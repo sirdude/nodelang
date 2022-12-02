@@ -1,0 +1,17 @@
+#This is what we want to do not how we do it...
+load_node('node')
+load_node('var')
+load_node('arr')
+load_node('map')
+load_node('func')
+load_node('statement')
+load_node('program')
+load_node('file')
+
+myfile = file.new()
+myfile.load("infile.txt")
+myprog = myfile.parse()
+mynode = program.new()
+mynode.set('statements', myprog)
+mynode.execute()
+

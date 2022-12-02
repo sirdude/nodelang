@@ -1,0 +1,68 @@
+x = node.new()
+x.set('name', 'map')
+x.set('base', 'node')
+x.set('description', 'Basic type: mapping.')
+
+x.additem('value')
+x.additem('sizeof')
+x.set('sizeof', 0)
+
+params = ('index')
+funcbody = "
+values = get('value')
+index = params.get('index')
+if (values.exists(index))) {
+	return 1
+} 
+return 0
+"
+
+x.addfunc('exists', params, funcbody)
+
+params = ('index')
+funcbody = "
+values = get('value')
+index = params.get('index')
+return values.get(index)
+"
+
+x.addfunc('get', params , funcbody)
+
+params = ('index', 'value')
+funcbody = "
+values = get('value')
+index = params.get('index')
+if (!values.exists(index))) {
+	size = get('sizeof')
+	size += 1
+	set('sizeof', size)
+}
+value = params.get('value')
+values.set(index, value)
+set('value', values)
+return 1
+"
+
+x.addfunc('set', params, funcbody)
+
+params = ('index')
+funcbody = "
+values = get('value')
+index = params.get('index')
+values.delete(index)
+set('value', values)
+sizeof = get('sizeof')
+sizeof -= 1
+set('sizeof') sizeof
+return sizeof
+"
+
+x.addfunc('delete', params, funcbody)
+
+params = ('')
+funcbody = "
+return get('sizeof')
+"
+
+x.addfunc('sizeof', params, funcbody)
+

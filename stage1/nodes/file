@@ -1,0 +1,37 @@
+x = node.new()
+x.set('name', 'file')
+x.set('base', 'node')
+x.set('description', 'Basic type: file')
+
+x.additem('filename')
+
+params = ('fname')
+func = "
+fname = params.get('fname')
+if (!fname || fname == "") {
+	filename = get('filename')
+} else {
+	filename = fname
+}
+if (!filename || filename == "") {
+	print "Invalid filename\n"
+	return 0
+}
+return load_file(filename)
+"
+
+x.addfunc('load', params, func)
+
+params = ('')
+func = "
+filename = get('filename')
+if (!filename || filename == "") {
+	print "Invalid filename\n"
+	return 0
+}
+file = load_file(filename)
+return parse(file)
+"
+
+x.addfunc('parse', params, func)
+

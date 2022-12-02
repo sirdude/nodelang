@@ -1,0 +1,66 @@
+x = node.new()
+x.set('name','node')
+x.set('base', 'node');
+x.set('description', 'Our base building block.')
+
+params = (name, type, description)
+func = "
+x = node.new()
+tmp = params.get('name')
+if (tmp) {
+	x.set('name', tmp)	
+}
+tmp = params.get('type')
+if (tmp) {
+	x.set('type', tmp)	
+}
+tmp = params.get('description')
+if (tmp) {
+	x.set('description', tmp)	
+}
+return x
+"
+
+x.addfunc('new', params, func)
+
+params = ('')
+func = "
+"
+
+x.addfunc('keys', params, func)
+
+params = ('')
+func = "
+"
+
+x.addfunc('dump', params, func)
+
+params = ('index', 'value')
+func = "
+value = params.get('value')
+index = params.get('index')
+set(index, value)
+"
+
+x.addfunc('set', params, func)
+
+params = ('index')
+func = "
+index = params.get('index')
+return getitem(index)
+"
+
+x.addfunc('get', params, func)
+
+func = "
+"
+
+params = ('index')
+x.addfunc('exists', params, func)
+
+func = "
+index = params.get('index')
+"
+
+params = ('index')
+x.addfunc('delete', params, func)

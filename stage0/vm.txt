@@ -1,0 +1,15 @@
+https://www.andreinc.net/2021/12/01/writing-a-simple-vm-in-less-than-125-lines-of-c#loading-and-running-programs
+
+actions:
+add
+and (logical bitwise and)
+not (logical bitwise)
+load( ld, ldi, ldr, lea)  #different versions for different uses.
+store(st, sti, str)
+jmp (jump)
+jsr (jump to subroutines)
+br (conditional branch)
+trap (tgetc, toutc, tputs, tin, thalt, tinu16, toutu16)
+
+
+see register based vs stack based vm's for more info...

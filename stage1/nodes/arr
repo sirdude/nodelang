@@ -1,0 +1,75 @@
+x = node.new()
+x.set('name', 'arr')
+x.set('base', 'node')
+x.set('description', 'Basic type: Array.  This is a list of items.')
+
+x.additem('value')
+x.additem('sizeof')
+
+params = ('index')
+funcbody = "
+index = params.get('index')
+values = get('value')
+return values.get(index)
+"
+
+x.addfunc('get', params, funcbody)
+
+params = ('index', 'value')
+funcbody = "
+index = params.get('index')
+if (index < 0) {
+	print "index must be larger than 0.\n"
+	return 0
+}
+size = get('sizeof')
+if (index >= size) {
+	print "Cannot index beyond size of array.\n"
+	return 0
+}
+value = params.get('value')
+values = get('value')
+values.set(index, value)
+set('value', values)
+size += 1
+set('sizeof', size)
+return 1
+"
+
+x.addfunc('set', params, funcbody)
+
+params = ('')
+funcbody = "
+return get('sizeof')
+"
+
+x.addfunc('sizeof', params, funcbody)
+
+params = ('item')
+funcbody = "
+item = params.get('item')
+size = get('sizeof')
+values = get('value')
+values[size] = item
+size += 1
+set('sizeof', size)
+return 1
+"
+
+x.addfunc('push', params, funcbody)
+
+params = ('')
+funcbody = "
+size = get('sizeof') - 1
+if (size < 0) {
+	print "Tried to remove from empty array.\n"
+	return ''
+}
+set('sizeof', size)
+values = get('value')
+tmp = values[size]
+return tmp;
+"
+
+x.addfunc('pop', params, funcbody)
+

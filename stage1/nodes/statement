@@ -1,0 +1,15 @@
+x = node.new()
+x.set('name', 'statement')
+x.set('base', 'node')
+x.set('description', 'Basic type: statement')
+
+x.additem('value')
+
+params = ('')
+func = "
+statement = getitem('value')
+eval(statement, params)
+"
+
+x.addfunc('execute', params, func)
+

@@ -1,0 +1,15 @@
+x = node.new()
+x.set('name', 'program')
+x.set('base', 'node')
+x.set('description', 'Basic type: program')
+
+x.additem('statements')
+
+fparams = ('')
+func = "
+s = getitem('statements')
+eval(statements, fparams)
+"
+
+x.addfunc('execute', fparams, func)
+

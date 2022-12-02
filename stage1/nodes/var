@@ -1,0 +1,27 @@
+use node
+use arr
+
+x = node.new()
+x.set('name', 'var')
+x.set('base', 'node')
+x.set('description', 'Basic type: variable')
+x.set('value', '')
+
+params = arr.new('')
+funcbody = "
+return get('value')
+"
+
+x.addfunc('get', params, funcbody)
+params.delete()
+funcbody.delete()
+
+params = arr.new('amount')
+funcbody = "
+amount = params.get('amount')
+set('value', amount)
+return 1
+"
+
+x.addfunc('set', params, funcbody)
+

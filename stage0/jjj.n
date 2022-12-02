@@ -1,0 +1,57 @@
+my %h;
+
+#%h{'wah'} := 'fun';
+%h<wah> := 'fun';
+%h{'kent'} := 'wah';
+
+for %h -> $i {
+	say($i.key ~ " " ~ $i.value);
+}
+
+sub fac($x) {
+	if ($x == 1) {
+		return 1;
+	} else {
+		return $x * fac($x-1);
+	}
+}
+
+say(fac(10));
+
+class BarTab {
+	has $!tablenum;
+	has @!items;
+
+	proto add_order($name, $price) {*}
+
+        method new_type() {
+                my $meta-object := self.new();
+                return nqp::newtype($meta-object, 'HashAttrStore');
+        }
+
+	method table() {
+		return($!tablenum);
+	}
+
+	method add_order($name, $price) {
+		my %t;
+		%t{'name'} := $name;
+		%t{'price'} := $price;
+		@!items.push(%t);
+	}
+
+	method render_tab() {
+		my $total;
+		for @!items {
+			say($_.key ~ " " ~ $_.value);
+			$total := $total + $_.value;
+		}
+		say("Total: " ~ $total);
+	}
+	
+}
+
+my $stuff := BarTab.new($tablenum => 42);
+my $obj := nqp::create($stuff);
+
+say($obj.table());

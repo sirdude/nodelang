@@ -1,0 +1,16 @@
+x = node.new()
+x.set('name', 'func')
+x.set('base', 'node')
+x.set('description', 'Basic type: function')
+
+x.additem('params')
+x.additem('fbody')
+
+fparams = ('')
+func = "
+p = getitem('params')
+f = getitem('funcbody')
+eval(func, fparams)
+"
+
+x.addfunc('execute', fparams, func)

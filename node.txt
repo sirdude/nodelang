@@ -1,0 +1,48 @@
+A node is basically a small package that consists of two things.
+data and actions.
+
+You can give a node a name, type, description these are all data.
+There are actions that allow you to work with that data.
+basic examples of actions are: set, get, exists
+
+In our language everything is a node.  Infact the "name" of a node is another
+node which is of the node type variable or var.
+
+To deal with this nesting of nodes, we have to make a distinction between how
+a node is defined and what we will call an instance of a node.
+A node definition has a bunch of underlying actions that allow you to work with a node.
+A node instance is much more lightweight and only contains additional information not found in 
+the node definition.  Here is a simple example:
+
+part of the var node definition:  (stops at ...)
+use node;
+use var;
+
+x = node.new();
+x.name = var.new('var')
+x.description = var.new('This is a basic variable node.')
+
+x.value = var.new('value')
+
+params = ('p')
+
+funcbody = "
+input = get_param('p')
+set('value', input)
+"
+x.add_func('set', params, funcbody)
+
+...
+
+an instance of a var is quite simple it looks like this:
+name = var.new('x');
+name.set(5);
+
+
+So a program consists of definitions and instances of those definitions.
+To work with an instance of something a program needs to look at the instance see if
+it has a local defintion of a function or data depending on what you are looking at.
+If not look at the definiton it is an instance of and try to find your function or data there.
+
+data functions: exists, delete, dump, set, get
+function functions: exists, delete, dump, add, execute
