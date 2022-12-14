@@ -27,6 +27,7 @@ token entries {
 token section {
 	'[' ~ ']' <hey> \n
 	<entries>
+}
 
 token TOP {
 	^

@@ -12,7 +12,7 @@ class Node {
 	}
 
 	method find_method($type, $name) {
-		%!actions{$name} 
+		%!actions{$name}; 
 	}
 
 	method add_data($name, $value) {
@@ -24,8 +24,8 @@ class Node {
 	}
 
 	method dump_data($name) {
-#		my $str :=  "add_data( " ~~ $name ~~ ", " ~~ %!data{$name} ~~ ")"
-#		return $str;
+		my $str :=  "add_data( " ~ $name ~ ", " ~ %!data{$name} ~ ")";
+		return $str;
 	}
 
 }

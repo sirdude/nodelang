@@ -51,7 +51,7 @@ class BarTab {
 	
 }
 
-my $stuff := BarTab.new($tablenum => 42);
-my $obj := nqp::create($stuff);
+my $stuff := BarTab.new(tablenum => 42);
+# my $obj := nqp::create($stuff);
 
-say($obj.table());
+say($stuff.table());
