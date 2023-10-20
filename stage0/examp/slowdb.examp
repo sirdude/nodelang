@@ -1,0 +1,14 @@
+INSERT name = 'jnthn', age = 28
+[
+	result: Inserted 1 row
+]
+
+SELECT name WHERE age = 28
+[
+	name: jnthn
+]
+
+select name WHERE age = 50
+Nothing found
+
+
